@@ -12,7 +12,7 @@ export class TBlock extends Block {
 
     public id = 6;
 
-    protected startOffset: Position = new Position(-1, 3);
+    protected startOffset: Position = new Position(0, 3);
     protected offset: Position = new Position(0, 0);
 
     constructor() {

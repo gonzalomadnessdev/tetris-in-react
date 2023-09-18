@@ -33,6 +33,9 @@ const Tetris = () => {
 
     const drawGrid = (grid: GameGrid) => {
         for (let i = 0; i < grid.rows; i++) {
+            if(i == 0){
+                continue;
+            }
             for (let j = 0; j < grid.columns; j++) {
                 ctx.fillStyle = tileImages[grid.grid[i][j]];
                 ctx.clearRect(j * cellSize, i * cellSize, cellSize, cellSize)
@@ -41,11 +44,22 @@ const Tetris = () => {
         }
     }
     const drawBlock = (block: Block) => {
-        block.getTilePositions().forEach((position) => {
+        // block.getTilePositions().forEach((position) => {
+
+        //     ctx.fillStyle = tileImages[block.id];
+        //     ctx.clearRect(position.column * cellSize, position.row * cellSize, cellSize, cellSize)
+        //     ctx.fillRect(position.column * cellSize, position.row * cellSize, cellSize, cellSize)
+        // });
+
+        for (let i = 0; i < block.getTilePositions().length; i++) {
+            const position = block.getTilePositions()[i]
+            if(position.row == 0){
+                continue;
+            }
             ctx.fillStyle = tileImages[block.id];
             ctx.clearRect(position.column * cellSize, position.row * cellSize, cellSize, cellSize)
             ctx.fillRect(position.column * cellSize, position.row * cellSize, cellSize, cellSize)
-        });
+        }
     }
 
     const drawScore = (score: number) => {
@@ -120,6 +134,7 @@ const Tetris = () => {
                 break;
             case Key.Space:
                 gameState.dropBlock()
+                break;
 
             default:
                 break;
@@ -152,7 +167,10 @@ const Tetris = () => {
         <>
             <div className="wrapper">
                 <div className="gameView">
+                    <div className="canvasContainer">
                     <canvas onKeyDown={keyDownHandler} tabIndex={0} id="canvas" width={width} height={height}></canvas>
+
+                    </div>
                     <p>
                         Move: 🡨 🡫 🡪 <br />
                         Rotate: 🡩   <br />

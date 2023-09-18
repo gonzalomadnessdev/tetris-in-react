@@ -8,9 +8,19 @@
 
 .gameView{
     width: fit-content;
+
 }
 
 .gameView > p{
     text-align: center;
     margin-top: 1rem;
+}
+
+.canvasContainer{
+    height: calc(21 * 30px);
+    overflow: hidden;
+}
+
+canvas{
+    transform: translateY(-30px)
 }
