@@ -1,0 +1,16 @@
+.wrapper{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameView{
+    width: fit-content;
+}
+
+.gameView > p{
+    text-align: center;
+    margin-top: 1rem;
+}

@@ -4,6 +4,7 @@ import { GameGrid } from "./GameGrid";
 import { Block } from "./Block";
 import { Key } from 'ts-keycode-enum';
 import { BlockQueue } from "./BlockQueue";
+import "./Tetris.css";
 
 
 const Tetris = () => {
@@ -54,7 +55,7 @@ const Tetris = () => {
         ctx.fillRect(0, height - 60, 150, 60);
         ctx.fillStyle = "black";
         ctx.fillText(`Score: ${score}`, 5, height - 5);
-        if(gameState.gameOver){
+        if (gameState.gameOver) {
             ctx.fillText(`Game Over`, 5, height - 35);
         }
     }
@@ -65,10 +66,10 @@ const Tetris = () => {
         ctx.fillStyle = "#ccc"
         ctx.fillRect(width - 150, height - 60, 150, 60)
         blockQueue.nextBlock.getPreviewPosition().forEach((position) => {
-            ctx.fillStyle = tileImages[blockQueue.nextBlock .id];
-            ctx.fillRect( 
+            ctx.fillStyle = tileImages[blockQueue.nextBlock.id];
+            ctx.fillRect(
                 (width - 65) + ((position.column) * previewCellSize),
-                (height - 45) + ((position.row)* previewCellSize),
+                (height - 45) + ((position.row) * previewCellSize),
                 previewCellSize,
                 previewCellSize
                 // width - ((position.column + 1) * previewCellSize),
@@ -95,7 +96,7 @@ const Tetris = () => {
         event.stopPropagation();
         console.log(gameState.gameOver)
 
-        if(event.which == Key.R){
+        if (event.which == Key.R) {
             restartGame();
             return;
         }
@@ -149,13 +150,17 @@ const Tetris = () => {
 
     return (
         <>
-            <canvas onKeyDown={keyDownHandler} tabIndex={0} id="canvas" width={width} height={height}></canvas>
-            <p>
-                Move: 🡨 🡫 🡪 <br />
-                Rotate: 🡩   <br />
-                Drop: Spacebar  <br />
-                Restart with 'R'. 😁
-            </p>
+            <div className="wrapper">
+                <div className="gameView">
+                    <canvas onKeyDown={keyDownHandler} tabIndex={0} id="canvas" width={width} height={height}></canvas>
+                    <p>
+                        Move: 🡨 🡫 🡪 <br />
+                        Rotate: 🡩   <br />
+                        Drop: Spacebar  <br />
+                        Restart with 'R'. 😁
+                    </p>
+                </div>
+            </div>
         </>
     )
 
